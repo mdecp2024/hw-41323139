@@ -1,4 +1,4 @@
-PYTHONimport os
+import os
 
 """CMSimfly Initialization setup
 """
