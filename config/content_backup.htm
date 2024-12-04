@@ -57,7 +57,177 @@
 <p></p>
 <h3>w12</h3>
 <p>hw1:<a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/c4fa07e0feedb4cc6df9f38205b18ddd/raw/b04241f9f60b7ef2194bde88a7f56934ee672401/w12_test1.py">使用迴圈及列印的程式</a></p>
-<h1>HW 2</h1>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/gZiy8jR2cO0" width="560"></iframe></p>
+<p></p>
+<h3>w12_hw</h3>
+<p>08_for_range</p>
+<p>範例:<a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/c2e69c49274ea7e48a019a708462775e/raw/b91ba2d61dc8b0dcdf0ee8e15d60c70837931e58/hw12_8.py">列印朋友與最愛食物對應關係</a></p>
+<p>說明:</p>
+<ul>
+<li>
+<p><strong><code>friends</code> 和 <code>dishes</code></strong>：</p>
+<ul>
+<li>定義兩個清單：<code>friends</code> 包含朋友的名字，<code>dishes</code> 包含他們最喜歡的食物。</li>
+</ul>
+</li>
+<li>
+<p><strong>列印清單內容</strong>：</p>
+<ul>
+<li>使用 <code>print</code> 來顯示清單和其內容。</li>
+</ul>
+</li>
+<li>
+<p><strong><code>for</code> 迴圈</strong>：</p>
+<ul>
+<li>使用 <code>for</code> 迴圈搭配 <code>range</code> 函數遍歷清單，列印每個元素的索引及值。</li>
+</ul>
+</li>
+<li>
+<p><strong>結合清單資訊</strong>：</p>
+<ul>
+<li>使用最後一個迴圈將朋友名字與他們最喜歡的食物結合，格式化顯示。</li>
+</ul>
+</li>
+</ul>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義朋友的名字清單
+friends = ["Geetha", "Luca", "Daisy", "Juhan"]  # 朋友們的名字
+# 定義食物的名字清單
+dishes  = ["sushi", "burgers", "tacos", "pizza"]  # 他們最喜歡的食物
+
+# 列印朋友的名字
+print("My friends' names are:")  # 顯示 "我的朋友的名字是："
+print(friends)  # 顯示朋友名字的清單
+
+# 迴圈遍歷朋友清單，顯示每個朋友的索引和值
+for index in range(0, 4):  # 從索引 0 遍歷到 3
+    print("index:  " + str(index))  # 顯示當前的索引
+    print("friend: " + friends[index])  # 顯示對應索引的朋友名字
+
+# 列印他們最喜歡的食物
+print("Their favorite dishes are:")  # 顯示 "他們最喜歡的食物是："
+print(dishes)  # 顯示食物清單
+
+# 迴圈遍歷食物清單，顯示每個食物的索引和值
+for index in range(0, 4):  # 從索引 0 遍歷到 3
+    print("index:  " + str(index))  # 顯示當前的索引
+    print("dish: " + dishes[index])  # 顯示對應索引的食物
+
+# 結合兩個清單，顯示朋友和他們最喜歡的食物
+for index in range(0, 4):  # 從索引 0 遍歷到 3
+    print("My friend " + friends[index] + "'s favorite dish is " + dishes[index])
+    # 顯示每位朋友最喜歡的食物
+</pre>
+<p></p>
+<p>09_for_loop_if_equals</p>
+<p>範例:<a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/c2e69c49274ea7e48a019a708462775e/raw/31c6e6d80e61cd274a38ec28de440d7c5ddc85aa/hw12_9.py">動物清單與目標搜尋</a></p>
+<p>說明:</p>
+<ul>
+<li>
+<p><strong><code>animals</code> 清單</strong>：</p>
+<ul>
+<li>定義了一個包含三種動物名稱的清單：<code>giraffe</code>（長頸鹿）、<code>penguin</code>（企鵝）、<code>dolphin</code>（海豚）。</li>
+</ul>
+</li>
+<li>
+<p><strong>第一次迴圈：列印動物及其位置</strong>：</p>
+<ul>
+<li>使用 <code>for</code> 迴圈和 <code>range</code> 函數來遍歷清單，列印每個動物的索引和名稱。</li>
+<li>顯示每次迴圈的起點，並列出動物及其在清單中的位置。</li>
+</ul>
+</li>
+<li>
+<p><strong>定義目標動物</strong>：</p>
+<ul>
+<li>設定變數 <code>wanted_to_see</code> 為想看到的動物「企鵝」。</li>
+</ul>
+</li>
+<li>
+<p><strong>第二次迴圈：檢查目標動物</strong>：</p>
+<ul>
+<li>再次遍歷清單，判斷當前動物是否為目標動物。</li>
+<li>若是目標動物，則列印特殊訊息；否則僅列印看到的動物。</li>
+</ul>
+</li>
+</ul>
+<p></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義動物清單
+animals = ["giraffe", "penguin", "dolphin"]  # 動物清單：長頸鹿、企鵝、海豚
+print(animals)  # 列印整個清單內容
+
+# 使用 for 迴圈遍歷清單，並顯示每個動物及其位置
+for i in range(0, len(animals)):  # 使用 range() 遍歷清單，索引從 0 到清單長度 - 1
+    print("-- Beginning of loop --")  # 提示每次迴圈的開始
+    # 列印每個元素的位置及其值
+    print("The element in position " + str(i) + " is " + animals[i])  
+    # 顯示目前索引位置的動物名稱
+
+# 定義想看到的動物
+wanted_to_see = "penguin"  # 定義目標動物為企鵝
+
+# 再次遍歷動物清單，檢查是否遇到想看到的動物
+for i in range(0, len(animals)):
+    # 如果目前的動物是想看到的動物
+    if animals[i] == wanted_to_see:
+        # 列印出這是你真正想看到的動物
+        print("I saw a " + animals[i] + " and I really wanted to see it!")
+    # 如果目前的動物不是想看到的動物
+    else:
+        # 只是列印出你看到了這個動物
+        print("I saw a " + animals[i])
+</pre>
+<p></p>
+<p></p>
+<p>10_for_search</p>
+<p>範例:<a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/c2e69c49274ea7e48a019a708462775e/raw/07a14b9cfdc4c58c763aa3e7a6dfefd36afe4f04/hw12_10.py">使用條件篩選與索引操作配件清單</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義配件清單
+accessories = ["belt", "hat", "gloves", "sunglasses", "ring"]  # 配件清單
+print(accessories)  # 列印整個清單內容
+
+# 迴圈遍歷清單，顯示每個元素及其位置
+for i in range(len(accessories)):  # 從索引 0 遍歷到清單長度 - 1
+    print("The element " + accessories[i] + " is in position " + str(i))
+    # 列印每個元素的名稱及其位置
+
+# 篩選出長度為 6 的元素
+for i in range(len(accessories)):
+    if len(accessories[i]) == 6:  # 如果元素長度為 6
+        print("The element " + accessories[i] + " is in position " + str(i) + " and it has 6 characters")
+        # 列印符合條件的元素及其相關資訊
+
+# 篩選出長度小於 6 的元素
+for i in range(len(accessories)):
+    if len(accessories[i]) &lt; 6:  # 如果元素長度小於 6
+        print("The element " + accessories[i] + " is in position " + str(i) + " and it has less than 6 characters")
+        # 列印符合條件的元素及其相關資訊
+
+# 篩選出長度大於 6 的元素
+n_of_characters = 6  # 設定字元長度的門檻值
+for i in range(len(accessories)):
+    if len(accessories[i]) &gt; n_of_characters:  # 如果元素長度大於門檻值
+        print("The element " + accessories[i] + " is in position " + str(i) + " and it has more than " + str(n_of_characters) + " characters")
+        # 列印符合條件的元素及其相關資訊
+
+# 篩選出長度不等於 6 的元素
+for i in range(len(accessories)):
+    if len(accessories[i]) != n_of_characters:  # 如果元素長度不等於門檻值
+        print("The element " + accessories[i] + " is in position " + str(i) + " and it has a number of characters different from " + str(n_of_characters))
+        # 列印符合條件的元素及其相關資訊
+
+# 篩選位置小於等於 2 的元素
+position = 2  # 設定位置門檻值
+for i in range(len(accessories)):
+    if i &lt;= position:  # 如果元素位置小於或等於門檻值
+        print("The element " + accessories[i] + " is in position " + str(i) + ", which is less than or equal to " + str(position))
+        # 列印符合條件的元素及其相關資訊
+
+# 篩選位置大於等於 2 的元素
+for i in range(len(accessories)):
+    if i &gt;= position:  # 如果元素位置大於或等於門檻值
+        print("The element " + accessories[i] + " is in position " + str(i) + ", which is at least " + str(position))
+        # 列印符合條件的元素及其相關資訊
+</pre>
+<p></p><h1>HW 2</h1>
 <h2>HW 2 Exam</h2>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 2 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
