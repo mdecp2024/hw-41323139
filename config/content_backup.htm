@@ -251,6 +251,88 @@ ctx.stroke()
 </script>
 </p>
 <h3>w13_hw</h3>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+ 
+# Create canvas element
+canvas = html.CANVAS(width=500, height=500)
+brython_div = doc["brython_div1"]
+brython_div &lt;= canvas
+ 
+# Define circle centers and radius
+x1, y1 = 200, 200  # Center of the first circle
+x2, y2 = 300, 300  # Center of the second circle
+radius = 141.4  # Radius of the circles
+ 
+ctx = canvas.getContext("2d")
+ 
+# Draw the first circle (fill color and border color)
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "lightcoral"  # Fill color for the first circle
+ctx.fill()
+ctx.lineWidth = 2
+ctx.strokeStyle = "darkgreen"  # Border color for the first circle
+ctx.stroke()
+ 
+# Draw the second circle (fill color and border color)
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "plum"  # Fill color for the second circle
+ctx.fill()
+ctx.lineWidth = 2
+ctx.strokeStyle = "navy"  # Border color for the second circle
+ctx.stroke()
+ 
+# Fill the intersection area of the two circles
+ctx.save()
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.clip()  # Set the clipping area to the first circle
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "lightcyan"  # Color for the intersection
+ctx.fill()
+ctx.restore()
+ 
+# Draw the first square (orange border, light yellow fill)
+ctx.beginPath()
+ctx.rect(100, 100, 200, 200)
+ctx.fillStyle = "lightyellow"  # Fill color for the first square
+ctx.fill()
+ctx.lineWidth = 2
+ctx.strokeStyle = "orange"  # Border color for the first square
+ctx.stroke()
+ 
+# Draw the second square (brown border, pale green fill)
+ctx.beginPath()
+ctx.rect(200, 200, 200, 200)
+ctx.fillStyle = "palegreen"  # Fill color for the second square
+ctx.fill()
+ctx.strokeStyle = "brown"  # Border color for the second square
+ctx.stroke()
+ 
+# Draw the borders of the circles (border colors retained)
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.lineWidth = 3
+ctx.strokeStyle = "darkgreen"
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.lineWidth = 3
+ctx.strokeStyle = "navy"
+ctx.stroke()
+ 
+# Draw the diagonal line on top and separately
+ctx.beginPath()
+ctx.moveTo(100, 100)
+ctx.lineTo(300, 300)
+ctx.strokeStyle = "darkred"  # Diagonal line color
+ctx.lineWidth = 2
+ctx.stroke()
+</pre>
 <!-- 導入 brython 程式庫 -->
 <p>
 <script src="/static/brython.js"></script>
