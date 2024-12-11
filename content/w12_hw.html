@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='W7.html'>W7</a><li><a href='w10.html'>w10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12.html'>w12</a><li><a href='w12_hw.html'>w12_hw</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='HW 3 Exam.html'>HW 3 Exam</a></li></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='W7.html'>W7</a><li><a href='w10.html'>w10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12.html'>w12</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w13_hw.html'>w13_hw</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='HW 3 Exam.html'>HW 3 Exam</a></li></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,7 +141,7 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w12 << <a href='w12.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w12_hw</h1>
+    <div id="tipue_search_content">w12 << <a href='w12.html'>Previous</a> <a href='w13_hw.html'>Next</a> >> w13_hw<br /><h1>w12_hw</h1>
 <p>08_for_range</p>
 <p>範例:<a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/c2e69c49274ea7e48a019a708462775e/raw/b91ba2d61dc8b0dcdf0ee8e15d60c70837931e58/hw12_8.py">列印朋友與最愛食物對應關係</a></p>
 <p>說明:</p>
@@ -291,55 +291,48 @@ for i in range(0, len(animals)):
 </ul>
 </li>
 </ul>
-<p></p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義配件清單
-accessories = ["belt", "hat", "gloves", "sunglasses", "ring"]  # 配件清單
-print(accessories)  # 列印整個清單內容
+<p>
+<script type="text/python">
+from browser import html
+from browser import document as doc
 
-# 迴圈遍歷清單，顯示每個元素及其位置
-for i in range(len(accessories)):  # 從索引 0 遍歷到清單長度 - 1
-    print("The element " + accessories[i] + " is in position " + str(i))
-    # 列印每個元素的名稱及其位置
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=600, height=600)  # 調整畫布大小以容納圓形
+brython_div = doc["brython_div1"]
+brython_div <= canvas
 
-# 篩選出長度為 6 的元素
-for i in range(len(accessories)):
-    if len(accessories[i]) == 6:  # 如果元素長度為 6
-        print("The element " + accessories[i] + " is in position " + str(i) + " and it has 6 characters")
-        # 列印符合條件的元素及其相關資訊
+ctx = canvas.getContext("2d")
+ctx.lineWidth = 1
 
-# 篩選出長度小於 6 的元素
-for i in range(len(accessories)):
-    if len(accessories[i]) &lt; 6:  # 如果元素長度小於 6
-        print("The element " + accessories[i] + " is in position " + str(i) + " and it has less than 6 characters")
-        # 列印符合條件的元素及其相關資訊
+# 1. 繪製兩個矩形 (紅色邊框)
+ctx.strokeStyle = 'red'  # 設定矩形的邊框顏色為紅色
+ctx.beginPath()
+ctx.rect(100, 100, 200, 200)  # 第一個正方形的左上角在(100, 100)，邊長200
+ctx.rect(200, 200, 200, 200)  # 第二個正方形的左上角在(200, 200)，邊長200
+ctx.stroke()
 
-# 篩選出長度大於 6 的元素
-n_of_characters = 6  # 設定字元長度的門檻值
-for i in range(len(accessories)):
-    if len(accessories[i]) &gt; n_of_characters:  # 如果元素長度大於門檻值
-        print("The element " + accessories[i] + " is in position " + str(i) + " and it has more than " + str(n_of_characters) + " characters")
-        # 列印符合條件的元素及其相關資訊
+# 2. 繪製對角線 (藍色) - 只連接第一個矩形的左上角和第一個矩形的右下角
+ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
+ctx.beginPath()
+ctx.moveTo(100, 100)  # 起點為第一個矩形的左上角 (100, 100)
+ctx.lineTo(300, 300)  # 終點為第一個矩形的右下角 (300, 300)
+ctx.stroke()
 
-# 篩選出長度不等於 6 的元素
-for i in range(len(accessories)):
-    if len(accessories[i]) != n_of_characters:  # 如果元素長度不等於門檻值
-        print("The element " + accessories[i] + " is in position " + str(i) + " and it has a number of characters different from " + str(n_of_characters))
-        # 列印符合條件的元素及其相關資訊
+# 3. 繪製兩個外切圓 (黑色)
+ctx.strokeStyle = 'black'  # 設定圓的顏色為黑色
 
-# 篩選位置小於等於 2 的元素
-position = 2  # 設定位置門檻值
-for i in range(len(accessories)):
-    if i &lt;= position:  # 如果元素位置小於或等於門檻值
-        print("The element " + accessories[i] + " is in position " + str(i) + ", which is less than or equal to " + str(position))
-        # 列印符合條件的元素及其相關資訊
+# 第一個矩形的外切圓
+ctx.beginPath()
+ctx.arc(200, 200, 141.4, 0, 2 * 3.14)  # 圓心在(200, 200)，半徑為141.4（sqrt(2) * 邊長的一半）
+ctx.stroke()
 
-# 篩選位置大於等於 2 的元素
-for i in range(len(accessories)):
-    if i &gt;= position:  # 如果元素位置大於或等於門檻值
-        print("The element " + accessories[i] + " is in position " + str(i) + ", which is at least " + str(position))
-        # 列印符合條件的元素及其相關資訊
-</pre>
-<p></p><br />w12 << <a href='w12.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
+# 第二個矩形的外切圓
+ctx.beginPath()
+ctx.arc(300, 300, 141.4, 0, 2 * 3.14)  # 圓心在(300, 300)，半徑為141.4
+ctx.stroke()
+</script>
+</p>
+<br />w12 << <a href='w12.html'>Previous</a> <a href='w13_hw.html'>Next</a> >> w13_hw</div>
         
     <!-- footer -->
       <div class="container">

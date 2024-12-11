@@ -180,54 +180,197 @@ for i in range(0, len(animals)):
 <p></p>
 <p>10_for_search</p>
 <p>範例:<a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/c2e69c49274ea7e48a019a708462775e/raw/07a14b9cfdc4c58c763aa3e7a6dfefd36afe4f04/hw12_10.py">使用條件篩選與索引操作配件清單</a></p>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義配件清單
-accessories = ["belt", "hat", "gloves", "sunglasses", "ring"]  # 配件清單
-print(accessories)  # 列印整個清單內容
+<p>說明:</p>
+<ul>
+<li>
+<p><strong>清單定義與列印</strong>：</p>
+<ul>
+<li><code>accessories</code> 包含多種配件名稱。</li>
+<li>使用 <code>print</code> 列印出清單內容。</li>
+</ul>
+</li>
+<li>
+<p><strong>迴圈與條件判斷</strong>：</p>
+<ul>
+<li>使用 <code>for</code> 迴圈和 <code>range</code> 遍歷每個配件，配合條件判斷其字元長度或位置是否符合特定條件。</li>
+</ul>
+</li>
+<li>
+<p><strong>條件分類</strong>：</p>
+<ul>
+<li>判斷字元長度是否等於、小於、大於或不等於門檻值，並根據條件篩選元素。</li>
+<li>判斷索引位置是否小於、等於或大於門檻值，篩選元素並列印相關資訊。</li>
+</ul>
+</li>
+<li>
+<p><strong>門檻值變數</strong>：</p>
+<ul>
+<li>使用 <code>n_of_characters</code> 與 <code>position</code> 來設定字元長度和索引位置的判斷標準，以便靈活控制篩選條件。</li>
+</ul>
+</li>
+</ul>
+<p>
+<script type="text/python">
+from browser import html
+from browser import document as doc
 
-# 迴圈遍歷清單，顯示每個元素及其位置
-for i in range(len(accessories)):  # 從索引 0 遍歷到清單長度 - 1
-    print("The element " + accessories[i] + " is in position " + str(i))
-    # 列印每個元素的名稱及其位置
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=600, height=600)  # 調整畫布大小以容納圓形
+brython_div = doc["brython_div1"]
+brython_div <= canvas
 
-# 篩選出長度為 6 的元素
-for i in range(len(accessories)):
-    if len(accessories[i]) == 6:  # 如果元素長度為 6
-        print("The element " + accessories[i] + " is in position " + str(i) + " and it has 6 characters")
-        # 列印符合條件的元素及其相關資訊
+ctx = canvas.getContext("2d")
+ctx.lineWidth = 1
 
-# 篩選出長度小於 6 的元素
-for i in range(len(accessories)):
-    if len(accessories[i]) &lt; 6:  # 如果元素長度小於 6
-        print("The element " + accessories[i] + " is in position " + str(i) + " and it has less than 6 characters")
-        # 列印符合條件的元素及其相關資訊
+# 1. 繪製兩個矩形 (紅色邊框)
+ctx.strokeStyle = 'red'  # 設定矩形的邊框顏色為紅色
+ctx.beginPath()
+ctx.rect(100, 100, 200, 200)  # 第一個正方形的左上角在(100, 100)，邊長200
+ctx.rect(200, 200, 200, 200)  # 第二個正方形的左上角在(200, 200)，邊長200
+ctx.stroke()
 
-# 篩選出長度大於 6 的元素
-n_of_characters = 6  # 設定字元長度的門檻值
-for i in range(len(accessories)):
-    if len(accessories[i]) &gt; n_of_characters:  # 如果元素長度大於門檻值
-        print("The element " + accessories[i] + " is in position " + str(i) + " and it has more than " + str(n_of_characters) + " characters")
-        # 列印符合條件的元素及其相關資訊
+# 2. 繪製對角線 (藍色) - 只連接第一個矩形的左上角和第一個矩形的右下角
+ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
+ctx.beginPath()
+ctx.moveTo(100, 100)  # 起點為第一個矩形的左上角 (100, 100)
+ctx.lineTo(300, 300)  # 終點為第一個矩形的右下角 (300, 300)
+ctx.stroke()
 
-# 篩選出長度不等於 6 的元素
-for i in range(len(accessories)):
-    if len(accessories[i]) != n_of_characters:  # 如果元素長度不等於門檻值
-        print("The element " + accessories[i] + " is in position " + str(i) + " and it has a number of characters different from " + str(n_of_characters))
-        # 列印符合條件的元素及其相關資訊
+# 3. 繪製兩個外切圓 (黑色)
+ctx.strokeStyle = 'black'  # 設定圓的顏色為黑色
 
-# 篩選位置小於等於 2 的元素
-position = 2  # 設定位置門檻值
-for i in range(len(accessories)):
-    if i &lt;= position:  # 如果元素位置小於或等於門檻值
-        print("The element " + accessories[i] + " is in position " + str(i) + ", which is less than or equal to " + str(position))
-        # 列印符合條件的元素及其相關資訊
+# 第一個矩形的外切圓
+ctx.beginPath()
+ctx.arc(200, 200, 141.4, 0, 2 * 3.14)  # 圓心在(200, 200)，半徑為141.4（sqrt(2) * 邊長的一半）
+ctx.stroke()
 
-# 篩選位置大於等於 2 的元素
-for i in range(len(accessories)):
-    if i &gt;= position:  # 如果元素位置大於或等於門檻值
-        print("The element " + accessories[i] + " is in position " + str(i) + ", which is at least " + str(position))
-        # 列印符合條件的元素及其相關資訊
-</pre>
-<p></p><h1>HW 2</h1>
+# 第二個矩形的外切圓
+ctx.beginPath()
+ctx.arc(300, 300, 141.4, 0, 2 * 3.14)  # 圓心在(300, 300)，半徑為141.4
+ctx.stroke()
+</script>
+</p>
+<h3>w13_hw</h3>
+<!-- 導入 brython 程式庫 -->
+<p>
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+</p>
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
+}
+</script>
+</p>
+<div id="brython_div1"></div>
+<script type="text/python3">
+from browser import html
+from browser import document as doc
+
+# 利用 html 建立 canvas 超文件物件
+canvas = html.CANVAS(width=600, height=600)  # 調整畫布大小以容納圓形
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+
+ctx = canvas.getContext("2d")
+ctx.lineWidth = 1
+
+# 1. 繪製兩個矩形 (紅色邊框)
+ctx.strokeStyle = 'red'  # 設定矩形的邊框顏色為紅色
+ctx.beginPath()
+ctx.rect(100, 100, 200, 200)  # 第一個正方形的左上角在(100, 100)，邊長200
+ctx.rect(200, 200, 200, 200)  # 第二個正方形的左上角在(200, 200)，邊長200
+ctx.stroke()
+
+# 2. 繪製對角線 (藍色) - 只連接第一個矩形的左上角和第一個矩形的右下角
+ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
+ctx.beginPath()
+ctx.moveTo(100, 100)  # 起點為第一個矩形的左上角 (100, 100)
+ctx.lineTo(300, 300)  # 終點為第一個矩形的右下角 (300, 300)
+ctx.stroke()
+from browser import html
+from browser import document as doc
+ 
+# Create canvas element
+canvas = html.CANVAS(width=500, height=500)
+brython_div = doc["brython_div1"]
+brython_div <= canvas
+ 
+# Define circle centers and radius
+x1, y1 = 200, 200  # Center of the first circle
+x2, y2 = 300, 300  # Center of the second circle
+radius = 141.4  # Radius of the circles
+ 
+ctx = canvas.getContext("2d")
+ 
+# Draw the first circle (fill color and border color)
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "lightcoral"  # Fill color for the first circle
+ctx.fill()
+ctx.lineWidth = 2
+ctx.strokeStyle = "darkgreen"  # Border color for the first circle
+ctx.stroke()
+ 
+# Draw the second circle (fill color and border color)
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "plum"  # Fill color for the second circle
+ctx.fill()
+ctx.lineWidth = 2
+ctx.strokeStyle = "navy"  # Border color for the second circle
+ctx.stroke()
+ 
+# Fill the intersection area of the two circles
+ctx.save()
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.clip()  # Set the clipping area to the first circle
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.fillStyle = "lightcyan"  # Color for the intersection
+ctx.fill()
+ctx.restore()
+ 
+# Draw the first square (orange border, light yellow fill)
+ctx.beginPath()
+ctx.rect(100, 100, 200, 200)
+ctx.fillStyle = "lightyellow"  # Fill color for the first square
+ctx.fill()
+ctx.lineWidth = 2
+ctx.strokeStyle = "orange"  # Border color for the first square
+ctx.stroke()
+ 
+# Draw the second square (brown border, pale green fill)
+ctx.beginPath()
+ctx.rect(200, 200, 200, 200)
+ctx.fillStyle = "palegreen"  # Fill color for the second square
+ctx.fill()
+ctx.strokeStyle = "brown"  # Border color for the second square
+ctx.stroke()
+ 
+# Draw the borders of the circles (border colors retained)
+ctx.beginPath()
+ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
+ctx.lineWidth = 3
+ctx.strokeStyle = "darkgreen"
+ctx.stroke()
+ 
+ctx.beginPath()
+ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
+ctx.lineWidth = 3
+ctx.strokeStyle = "navy"
+ctx.stroke()
+ 
+# Draw the diagonal line on top and separately
+ctx.beginPath()
+ctx.moveTo(100, 100)
+ctx.lineTo(300, 300)
+ctx.strokeStyle = "darkred"  # Diagonal line color
+ctx.lineWidth = 2
+ctx.stroke()
+</script><h1>HW 2</h1>
 <h2>HW 2 Exam</h2>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 2 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
