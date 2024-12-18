@@ -130,7 +130,7 @@ img.add_border {
                             <li><a href="./../blog/index.html">blog</a></li>
                         </ul>
                       </li>
-                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='W7.html'>W7</a><li><a href='w10.html'>w10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12.html'>w12</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w13_hw.html'>w13_hw</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='HW 3 Exam.html'>HW 3 Exam</a></li></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
+                     <li><a href='About.html'>About</a><li><a href='Attendance.html'>Attendance</a><li class='has-children'><a href='HW 1.html'>HW 1</a><ul class='dropdown'><li class='has-children'><a href='HW 1 Exam.html'>HW 1 Exam</a><ul class='dropdown'><li><a href='w7.html'>w7</a><li><a href='w10.html'>w10</a><li><a href='w11_hw.html'>w11_hw</a><li><a href='w12.html'>w12</a><li><a href='w12_hw.html'>w12_hw</a><li><a href='w13_hw.html'>w13_hw</a><li><a href='w14.html'>w14</a></li></li></ul></ul><li class='has-children'><a href='HW 2.html'>HW 2</a><ul class='dropdown'><li><a href='HW 2 Exam.html'>HW 2 Exam</a></li></ul><li class='has-children'><a href='HW 3.html'>HW 3</a><ul class='dropdown'><li><a href='HW 3 Exam.html'>HW 3 Exam</a></li></ul><li class='has-children'><a href='HW 4.html'>HW 4</a><ul class='dropdown'><li><a href='HW 4 Exam.html'>HW 4 Exam</a></li></ul><li><a href='Final Report.html'>Final Report</a><li><a href='Brython.html'>Brython</a></li>
                       </ul>
                 </nav>
               </div>
@@ -141,7 +141,7 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">w12_hw << <a href='w12_hw.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2<br /><h1>w13_hw</h1>
+    <div id="tipue_search_content">w12_hw << <a href='w12_hw.html'>Previous</a> <a href='w14.html'>Next</a> >> w14<br /><h1>w13_hw</h1>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/puQQDrrtpMw?si=ly5i6YJwxT4tU_Z-" title="YouTube video player" width="560"></iframe></p>
 <p></p>
 <p></p>
@@ -239,114 +239,7 @@ brython({debug:1, pythonpath:['./../cmsimde/static/','./../downloads/py/']});
 }
 </script>
 </p>
-<div id="brython_div1"></div>
-<script type="text/python3">
-from browser import html
-from browser import document as doc
-
-# 利用 html 建立 canvas 超文件物件
-canvas = html.CANVAS(width=600, height=600)  # 調整畫布大小以容納圓形
-brython_div = doc["brython_div1"]
-brython_div <= canvas
-
-ctx = canvas.getContext("2d")
-ctx.lineWidth = 1
-
-# 1. 繪製兩個矩形 (紅色邊框)
-ctx.strokeStyle = 'red'  # 設定矩形的邊框顏色為紅色
-ctx.beginPath()
-ctx.rect(100, 100, 200, 200)  # 第一個正方形的左上角在(100, 100)，邊長200
-ctx.rect(200, 200, 200, 200)  # 第二個正方形的左上角在(200, 200)，邊長200
-ctx.stroke()
-
-# 2. 繪製對角線 (藍色) - 只連接第一個矩形的左上角和第一個矩形的右下角
-ctx.strokeStyle = 'blue'  # 設定對角線顏色為藍色
-ctx.beginPath()
-ctx.moveTo(100, 100)  # 起點為第一個矩形的左上角 (100, 100)
-ctx.lineTo(300, 300)  # 終點為第一個矩形的右下角 (300, 300)
-ctx.stroke()
-from browser import html
-from browser import document as doc
- 
-# Create canvas element
-canvas = html.CANVAS(width=500, height=500)
-brython_div = doc["brython_div1"]
-brython_div <= canvas
- 
-# Define circle centers and radius
-x1, y1 = 200, 200  # Center of the first circle
-x2, y2 = 300, 300  # Center of the second circle
-radius = 141.4  # Radius of the circles
- 
-ctx = canvas.getContext("2d")
- 
-# Draw the first circle (fill color and border color)
-ctx.beginPath()
-ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
-ctx.fillStyle = "lightcoral"  # Fill color for the first circle
-ctx.fill()
-ctx.lineWidth = 2
-ctx.strokeStyle = "darkgreen"  # Border color for the first circle
-ctx.stroke()
- 
-# Draw the second circle (fill color and border color)
-ctx.beginPath()
-ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
-ctx.fillStyle = "plum"  # Fill color for the second circle
-ctx.fill()
-ctx.lineWidth = 2
-ctx.strokeStyle = "navy"  # Border color for the second circle
-ctx.stroke()
- 
-# Fill the intersection area of the two circles
-ctx.save()
-ctx.beginPath()
-ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
-ctx.clip()  # Set the clipping area to the first circle
-ctx.beginPath()
-ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
-ctx.fillStyle = "lightcyan"  # Color for the intersection
-ctx.fill()
-ctx.restore()
- 
-# Draw the first square (orange border, light yellow fill)
-ctx.beginPath()
-ctx.rect(100, 100, 200, 200)
-ctx.fillStyle = "lightyellow"  # Fill color for the first square
-ctx.fill()
-ctx.lineWidth = 2
-ctx.strokeStyle = "orange"  # Border color for the first square
-ctx.stroke()
- 
-# Draw the second square (brown border, pale green fill)
-ctx.beginPath()
-ctx.rect(200, 200, 200, 200)
-ctx.fillStyle = "palegreen"  # Fill color for the second square
-ctx.fill()
-ctx.strokeStyle = "brown"  # Border color for the second square
-ctx.stroke()
- 
-# Draw the borders of the circles (border colors retained)
-ctx.beginPath()
-ctx.arc(x1, y1, radius, 0, 2 * 3.14159)
-ctx.lineWidth = 3
-ctx.strokeStyle = "darkgreen"
-ctx.stroke()
- 
-ctx.beginPath()
-ctx.arc(x2, y2, radius, 0, 2 * 3.14159)
-ctx.lineWidth = 3
-ctx.strokeStyle = "navy"
-ctx.stroke()
- 
-# Draw the diagonal line on top and separately
-ctx.beginPath()
-ctx.moveTo(100, 100)
-ctx.lineTo(300, 300)
-ctx.strokeStyle = "darkred"  # Diagonal line color
-ctx.lineWidth = 2
-ctx.stroke()
-</script><br />w12_hw << <a href='w12_hw.html'>Previous</a> <a href='HW 2.html'>Next</a> >> HW 2</div>
+<br />w12_hw << <a href='w12_hw.html'>Previous</a> <a href='w14.html'>Next</a> >> w14</div>
         
     <!-- footer -->
       <div class="container">

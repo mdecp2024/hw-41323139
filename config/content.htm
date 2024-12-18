@@ -39,7 +39,7 @@
 <h2>HW 1 Exam</h2>
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 Topic 1 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
-<h3>W7</h3>
+<h3>w7</h3>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="353" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/dgEudN0aksY" title="chrome nu6XolGXmn" width="657"></iframe></p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="353" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/U-0T94e1OmY" title="chrome KbsLZHy1ym" width="657"></iframe></p>
 <p></p>
@@ -348,7 +348,84 @@ brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
 }
 </script>
 </p>
-<div id="brython_div1"></div>
+<h3>w14</h3>
+<p><span>請根據三個圓繪圖所圍成的區域</span><span>進行不同顏色著色, 條件是當各圓半徑與圓心座標變動時, 程式只需輸入三個圓的圓心座標與半徑, 就可以完成各區域的著色任務</span></p>
+<p><span></span><a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/e926c5adda1076c173c67422e18f3d37/raw/9b2d87ffd72705d2ed3662b5f7f5fc5eceab458d/w14.py">程式連結</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+import random
+import math
+
+# 定義一個函式來初始化畫布
+def initialize_canvas(canvas_width=400, canvas_height=400, id="brython_div1"):
+    """
+    初始化畫布，創建一個指定大小的 Canvas 元素，並將其加到 HTML 文件中。
+    返回畫布元素和它的 2D 繪圖上下文。
+    """
+    canvas = html.CANVAS(width=canvas_width, height=canvas_height)
+    brython_div = doc[id]
+    brython_div &lt;= canvas
+    ctx = canvas.getContext("2d")
+    return canvas, ctx
+
+# 定義一個隨機顏色生成函式
+def random_color_generator():
+    r = random.randint(0, 255)
+    g = random.randint(0, 255)
+    b = random.randint(0, 255)
+    return f"rgb({r}, {g}, {b})"
+
+# 判斷點 (px, py) 是否在圓內
+def is_point_in_circle(px, py, cx, cy, r):
+    return (px - cx) ** 2 + (py - cy) ** 2 &lt;= r ** 2
+
+# 主函式：繪製並填充多個圓的區域
+def draw_circles_dynamic():
+    """
+    根據使用者輸入的圓心座標與半徑，繪製多個圓，並填充各區域。
+    使用者需要輸入每個圓的信息，包含 (cx, cy, r)，即圓心座標和半徑。
+    """
+    # 輸入圓的數量
+    num_circles = int(input("請輸入圓的數量: "))
+
+    # 初始化圓的參數列表
+    circles = []
+    for i in range(num_circles):
+        print(f"請輸入第 {i + 1} 個圓的參數:")
+        cx = int(input("圓心 x 座標: "))
+        cy = int(input("圓心 y 座標: "))
+        r = int(input("半徑: "))
+        circles.append((cx, cy, r))
+
+    canvas, ctx = initialize_canvas(400, 400)
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+    color_dict = {}
+    
+    for py in range(canvas.height):
+        for px in range(canvas.width):
+            # 檢查當前點在哪些圓內
+            in_circles = [i for i, (cx, cy, r) in enumerate(circles) if is_point_in_circle(px, py, cx, cy, r)]
+
+            # 決定顏色
+            if len(in_circles) &gt; 1:
+                key = "intersection"
+            elif len(in_circles) == 1:
+                key = f"circle{in_circles[0]}"
+            else:
+                key = "background"
+
+            if key not in color_dict:
+                color_dict[key] = random_color_generator() if key != "background" else "white"
+
+            # 填充顏色
+            ctx.fillStyle = color_dict[key]
+            ctx.fillRect(px, py, 1, 1)
+
+# 呼叫函式來繪製圓
+draw_circles_dynamic()
+</pre>
+<p></p>
 <script type="text/python3">
 from browser import html
 from browser import document as doc
