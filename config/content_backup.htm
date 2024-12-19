@@ -350,7 +350,7 @@ brython({debug:1, pythonpath:['/static/','./../downloads/py/']});
 </p>
 <h3>w14</h3>
 <p><span>請根據三個圓繪圖所圍成的區域</span><span>進行不同顏色著色, 條件是當各圓半徑與圓心座標變動時, 程式只需輸入三個圓的圓心座標與半徑, 就可以完成各區域的著色任務</span></p>
-<p><span></span></p>
+<p><span></span><a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/e926c5adda1076c173c67422e18f3d37/raw/9b2d87ffd72705d2ed3662b5f7f5fc5eceab458d/w14.py">程式連結</a></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
 from browser import document as doc
 import random
@@ -425,7 +425,15 @@ def draw_circles_dynamic():
 # 呼叫函式來繪製圓
 draw_circles_dynamic()
 </pre>
-<p></p>
+<h3>w15</h3>
+<p><span>題目一: 請利用 Gist 與 Brython 程式環境, 在個人的課程網站中新增一個頁面, 標題為 w15, 以"從 1 累加到 100"作為 anchor 的連結標題, 使用者點擊該連結之後, 可從各自的 Brython 頁面執行程式.</span></p>
+<p><a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/8204068d8bf202f96b8e171e97b51ed8/raw/3bcda4927a410749ac1919090535a476f8b2e98c/w15_ex1">從 1 累加到 100</a></p>
+<p><span>題目二: 延伸上題, 設計一個函式 addto(1, 100), 可以完成上述的累加結果. (以"addto"作為連結標題)</span></p>
+<p><a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/8204068d8bf202f96b8e171e97b51ed8/raw/5b19c45f71a59341495b952fd503b7b800bcddb6/w15_ex2.py">addto</a></p>
+<p><span>題目三: 延伸上題, 設計一個函式 add_only_even(1, 100), 可以完成從第一個輸入整數, 累加到第二個輸入變數的累加結果. 頁面中請以 add_only_even 作為連結標題.</span></p>
+<p><span>add_only_even</span></p>
+<p><span>題目四: 延伸上題, 設計一個函式 add_avoid_8(1, 100), 可以完成從第一個輸入整數, 累加到第二個輸入變數的累加過程, 必須避開數字出現"8"的整數, 頁面中請以 add_avoid_8 作為連結標題.</span></p>
+<p><span>add_avoid_8</span></p>
 <script type="text/python3">
 from browser import html
 from browser import document as doc
