@@ -428,12 +428,50 @@ draw_circles_dynamic()
 <h3>w15</h3>
 <p><span>題目一: 請利用 Gist 與 Brython 程式環境, 在個人的課程網站中新增一個頁面, 標題為 w15, 以"從 1 累加到 100"作為 anchor 的連結標題, 使用者點擊該連結之後, 可從各自的 Brython 頁面執行程式.</span></p>
 <p><a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/8204068d8bf202f96b8e171e97b51ed8/raw/3bcda4927a410749ac1919090535a476f8b2e98c/w15_ex1">從 1 累加到 100</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">sum = 0
+
+for i in range(0,101):
+    sum += i
+print(sum)</pre>
+<p><span></span></p>
 <p><span>題目二: 延伸上題, 設計一個函式 addto(1, 100), 可以完成上述的累加結果. (以"addto"作為連結標題)</span></p>
 <p><a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/8204068d8bf202f96b8e171e97b51ed8/raw/5b19c45f71a59341495b952fd503b7b800bcddb6/w15_ex2.py">addto</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def addto(x,y):
+  sum = 0
+  for i in range(x,y+1):
+    sum += i
+  print(sum)
+
+addto(0,100)</pre>
+<p><span></span></p>
 <p><span>題目三: 延伸上題, 設計一個函式 add_only_even(1, 100), 可以完成從第一個輸入整數, 累加到第二個輸入變數的累加結果. 頁面中請以 add_only_even 作為連結標題.</span></p>
-<p><span>add_only_even</span></p>
+<p><a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/8204068d8bf202f96b8e171e97b51ed8/raw/5b19c45f71a59341495b952fd503b7b800bcddb6/w15_ex3.py">add_only_even</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def addto(x,y):
+  sum = 0
+  for i in range(x,y+1):
+    sum += i
+    print(sum)
+addto(0,100)</pre>
+<p><span></span></p>
 <p><span>題目四: 延伸上題, 設計一個函式 add_avoid_8(1, 100), 可以完成從第一個輸入整數, 累加到第二個輸入變數的累加過程, 必須避開數字出現"8"的整數, 頁面中請以 add_avoid_8 作為連結標題.</span></p>
-<p><span>add_avoid_8</span></p>
+<p><a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/8204068d8bf202f96b8e171e97b51ed8/raw/1379cb57bed82552c8b4c48efeadd66e681aac91/w15_ex4.py">add_avoid_8</a></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">def add_avoid_8(start, end):
+    """
+    累加從 start 到 end 的所有整數，避開包含數字 8 的整數。
+    :param start: 起始整數
+    :param end: 結束整數
+    :return: 符合條件的累加結果
+    """
+    total = 0
+    for num in range(start, end + 1):
+        if '8' not in str(num):  # 判斷是否包含數字 8
+            total += num
+    return total
+
+# 測試範例
+result = add_avoid_8(1, 100)
+print("累加結果:", result)</pre>
+<p></p>
 <script type="text/python3">
 from browser import html
 from browser import document as doc
