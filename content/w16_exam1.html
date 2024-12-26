@@ -2,7 +2,7 @@
         <head>
         <title>cp_hw</title>
         <meta charset="utf-8">
-<meta property="head" content="H1">
+<meta property="head" content="H3">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/fonts/icomoon/style.css">
         <link rel="stylesheet" href="./../cmsimde/static/chimper/css/bootstrap.min.css">
@@ -141,10 +141,157 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">About << <a href='About.html'>Previous</a> <a href='HW 1.html'>Next</a> >> HW 1<br /><h1>Attendance</h1>
-<p>出席 (10%) - 自行舉證評分</p>
-<p>自行利用 Github commits 提交記錄評分.</p>
-<br />About << <a href='About.html'>Previous</a> <a href='HW 1.html'>Next</a> >> HW 1</div>
+    <div id="tipue_search_content">HW 2 Exam << <a href='HW 2 Exam.html'>Previous</a> <a href='HW 3.html'>Next</a> >> HW 3<br /><h1>w16_exam1</h1>
+<p><span>請以</span><span>自己的學號最後四碼</span><span>作為繪圖的座標原點, (例如: 若學號最後四碼為 3139, 請將 (31,39) 作為繪圖座標原點), 並以 pixel=2 的黑色直線分別利用 Brython 繪圖, 標示出向右為正的 X 軸, 以及向下為正的 Y 軸, 並且利用文字標示出原點座標 (例如: (31, 39)), 之後請自選最左側圖形的起始點座標, 直接在頁面畫出下列圖像, 繪圖程式除了必須直接列在頁面 html 檔案外, 也請存入自己的 Gist 區域, 並在所完成的</span><span>圖像下方, 以自選標題的 anchor 連結至 Gist, 讓使用者點擊該連結後, 可以在各自的 Brython 頁面中繪出下列圖像</span></p>
+<p><a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/98079477260d4dfe5907c89ad5c92d18/raw/53bce4a4520617025d337f070e47e9d89b4980da/w16_exam1.py">w16_exam1</a></p>
+<p><img alt="" height="158" src="./../images/螢幕擷取畫面 2024-12-26 160027.png" width="527"/></p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/0LtnVB9_cyQ" width="560"></iframe></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+from math import pi, sin, cos, sqrt
+
+# 設置畫布尺寸
+CANVAS_WIDTH = 800
+CANVAS_HEIGHT = 600
+
+# 設置原點
+origin_x, origin_y = 31, 39
+pixel = 2
+
+# 創建畫布
+def create_canvas():
+    canvas = html.CANVAS(width=CANVAS_WIDTH, height=CANVAS_HEIGHT)
+    canvas.style.border = "1px solid black"
+    doc &lt;= canvas
+    return canvas
+
+canvas = create_canvas()
+ctx = canvas.getContext("2d")
+
+# 標示原點
+def draw_origin():
+    ctx.fillStyle = "black"
+    ctx.beginPath()
+    ctx.arc(origin_x, origin_y, 3, 0, 2 * pi)
+    ctx.fill()
+    ctx.font = "14px Arial"
+    ctx.fillText(f"({origin_x},{origin_y})", origin_x + 5, origin_y - 5)
+
+# 畫直線的函數
+def draw_line(x1, y1, x2, y2):
+    ctx.beginPath()
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.lineWidth = pixel
+    ctx.strokeStyle = "black"
+    ctx.stroke()
+
+# 繪製 X 軸和 Y 軸
+def draw_axes():
+    draw_line(0, origin_y, CANVAS_WIDTH, origin_y)  # X 軸
+    draw_line(origin_x, 0, origin_x, CANVAS_HEIGHT)  # Y 軸
+
+# 繪製正六邊形
+def draw_hexagon(x, y, size):
+    ctx.beginPath()
+    for i in range(6):
+        angle = pi / 3 * i
+        x_i = x + size * cos(angle)
+        y_i = y + size * sin(angle)
+        if i == 0:
+            ctx.moveTo(x_i, y_i)
+        else:
+            ctx.lineTo(x_i, y_i)
+    ctx.closePath()
+    ctx.fillStyle = "lightblue"  # 填充顏色
+    ctx.fill()  # 填充顏色
+
+# 繪製更尖且縮小的菱形
+def draw_sharp_small_diamond(x, y, size):
+    ctx.beginPath()
+    # 調整菱形的頂部和底部，使其更尖並縮小
+    ctx.moveTo(x, y - size * 1.2)  # 上頂點 (更尖)
+    ctx.lineTo(x + size * 0.8, y)  # 右頂點 (縮小)
+    ctx.lineTo(x, y + size * 1.2)  # 下頂點 (更尖)
+    ctx.lineTo(x - size * 0.8, y)  # 左頂點 (縮小)
+    ctx.closePath()
+    ctx.fillStyle = "lightgreen"  # 填充顏色
+    ctx.fill()  # 填充顏色
+
+# 繪製縮小的三角形
+def draw_triangle(x, y, size):
+    height = size * sqrt(3) / 2
+    ctx.beginPath()
+    ctx.moveTo(x, y)  # 左下角
+    ctx.lineTo(x + size, y)  # 右下角
+    ctx.lineTo(x + size / 2, y - height)  # 上頂點
+    ctx.closePath()
+    ctx.fillStyle = "lightcoral"  # 填充顏色
+    ctx.fill()  # 填充顏色
+
+# 繪製圓形
+def draw_circle(x, y, radius):
+    ctx.beginPath()
+    ctx.arc(x, y, radius, 0, 2 * pi)
+    ctx.closePath()
+    ctx.fillStyle = "yellow"  # 填充顏色
+    ctx.fill()  # 填充顏色
+
+# 繪製正方形
+def draw_square(x, y, size):
+    ctx.beginPath()
+    ctx.rect(x, y, size, size)
+    ctx.closePath()
+    ctx.fillStyle = "lightpink"  # 填充顏色
+    ctx.fill()  # 填充顏色
+
+# 繪製長方形
+def draw_rectangle(x, y, width, height):
+    ctx.beginPath()
+    ctx.rect(x, y, width, height)
+    ctx.closePath()
+    ctx.fillStyle = "lightyellow"  # 填充顏色
+    ctx.fill()  # 填充顏色
+
+# 主繪圖函數
+def draw_shapes():
+    draw_origin()
+    draw_axes()
+    
+    # 設定每個形狀的起始位置
+    start_x, start_y = origin_x + 50, origin_y + 50
+
+    # 繪製正六邊形（不變）
+    draw_hexagon(start_x, start_y, 40)  # 六邊形
+    
+    # 繪製更尖且縮小的菱形
+    draw_sharp_small_diamond(start_x + 120, start_y, 30)  # 更尖且縮小的菱形
+    
+    # 繪製縮小的三角形，並放置在菱形的右下角
+    triangle_size = 25  # 縮小的三角形大小
+    triangle_x = start_x + 120 + 40  # 菱形右下角的 x 坐標
+    triangle_y = start_y + 40  # 菱形右下角的 y 坐標
+    draw_triangle(triangle_x, triangle_y, triangle_size)  # 三角形
+    
+    # 繪製圓形
+    circle_x = start_x + 250
+    circle_y = start_y
+    draw_circle(circle_x, circle_y, 40)  # 圓形
+    
+    # 計算正方形和長方形的 y 坐標，使其與圓形的中心對齊
+    square_y = circle_y - 30  # 正方形的中心對齊圓形中心
+    rectangle_y = circle_y - 30  # 長方形的中心對齊圓形中心
+    
+    # 繪製正方形
+    draw_square(start_x + 320, square_y, 60)  # 正方形
+    
+    # 繪製長方形
+    draw_rectangle(start_x + 410, rectangle_y, 100, 60)  # 長方形
+
+# 執行繪圖
+draw_shapes()
+</pre>
+<p></p><br />HW 2 Exam << <a href='HW 2 Exam.html'>Previous</a> <a href='HW 3.html'>Next</a> >> HW 3</div>
         
     <!-- footer -->
       <div class="container">
