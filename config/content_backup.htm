@@ -836,7 +836,115 @@ main()
 <p>每六人為一組進行協同程式練習</p>
 <p>透過 Jupyterlab 協同網頁, 輪流指定各組編寫 HW 4 相關的程式練習, 以及網頁內容 (localhost 與 Codespaces 環境)編輯.</p>
 <h3>w16_exam3</h3>
-<p><a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/98079477260d4dfe5907c89ad5c92d18/raw/878ca8f684f58141f6ac04683a094dc4d813e2a8/w16_exam3.py">w16_exam3</a></p><h1>Final Report</h1>
+<p>請以<span>自己的學號最後四碼</span>作為下列繪圖的左上方點座標, (例如: 若學號最後四碼為 3932, 請將 (39, 32) 作為繪圖左上方點座標), 並以紅色文字標示出該點座標 (例如: (39, 32)), 之後請利用<span> </span><span>pixel=2 的黑色直線</span>,<span> </span><span>自訂迷宮畫布大小</span>, 直接在頁面畫出下列圖像, 並且<span>利用紅色連續線段標示從上方入口, 走至下方出口的路線圖</span>.</p>
+<p>繪圖程式除了必須直接列在頁面 html 檔案外, 也請存入自己的 Gist 區域, 並在所完成的圖像下方, 以自選標題的 anchor 連結至 Gist, 讓使用者點擊該連結後, 可以在各自的 Brython 頁面中繪出下列圖像).</p>
+<p><a href="https://mdecp2024.github.io/hw-41323139/content/Brython.html?src=https://gist.githubusercontent.com/41323139/98079477260d4dfe5907c89ad5c92d18/raw/878ca8f684f58141f6ac04683a094dc4d813e2a8/w16_exam3.py">w16_exam3</a></p>
+<p><img alt="" height="550" src="/images/螢幕擷取畫面 2025-01-05-1 160027.png" width="550"/></p>
+<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/wRzY0IbhtME" width="560"></iframe></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">from browser import html
+from browser import document as doc
+
+# 初始化畫布
+def create_canvas(id="brython_div1", width=550, height=550):
+    """
+    初始化畫布，並插入到指定的 HTML 容器中。
+    返回畫布及其 2D 繪圖上下文。
+    """
+    canvas = html.CANVAS(id="maze_canvas", width=width, height=height)
+    doc[id] &lt;= canvas
+    return canvas, canvas.getContext("2d")
+
+# 繪製迷宮
+def draw_maze(ctx, origin_x=31, origin_y=39):
+    """
+    根據原點繪製迷宮，並用紅色標記起始座標。
+    """
+    # 設定起始點的標記文字（紅色）
+    ctx.font = "12px Arial"
+    ctx.fillStyle = "red"
+    ctx.fillText(f"({origin_x}, {origin_y})", origin_x + 5, origin_y - 5)
+
+    # 設定黑色線條樣式
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+
+    # 定義迷宮的所有線條座標 ( 起點 x1, y1 到 終點 x2, y2)
+    lines = [
+        # 水平線條
+        (origin_x, origin_y, 200, origin_y),
+        (300, origin_y, 500, origin_y),
+        (150, 100, 400, 100),
+        (150, 300, 400, 300),
+        (origin_x, 500, 200, 500),
+        (300, 500, 500, 500),
+        (200, 400, 300, 400),
+        (origin_x, 200, 200, 200),
+        # 垂直線條
+        (origin_x, origin_y, origin_x, 500),
+        (500, origin_y, 500, 500),
+        (200, 100, 200, 200),
+        (400, 100, 400, 200),
+        (300, 200, 300, 300),
+        (400, 300, 400, 500),
+        (200, 400, 200, 500),
+        (150, 300, 150, 400),
+    ]
+
+    # 開始繪製線條
+    ctx.beginPath()
+    for x1, y1, x2, y2 in lines:
+        ctx.moveTo(x1, y1)
+        ctx.lineTo(x2, y2)
+    ctx.stroke()
+
+# 自動尋找出口路徑
+def find_path():
+    """
+    定義從原點自動尋找出口的路徑，避免與牆壁重疊。
+    """
+    # 手動設計的路徑，確保不與牆壁重疊
+    return [
+        (225, 0), (225, 50), (425, 50), (425, 225),
+        (320, 225), (325, 125), (225, 125), (225, 225),(75, 225),(75, 425),
+        (150, 425), (150, 325),(325, 325),(325, 425),(225, 425),(225, 500), # 出口點
+    ]
+
+# 繪製路徑
+def draw_path(ctx, path, origin_x=31, origin_y=39):
+    """
+    繪製從入口到出口的路徑。
+    """
+    ctx.strokeStyle = "red"
+    ctx.lineWidth = 2
+    ctx.beginPath()
+    for i, (x, y) in enumerate(path):
+        if i == 0:
+            ctx.moveTo(x + origin_x, y + origin_y)
+        else:
+            ctx.lineTo(x + origin_x, y + origin_y)
+    ctx.stroke()
+
+# 主程式執行
+def main():
+    """
+    主函式：負責初始化畫布，並繪製迷宮及路徑。
+    """
+    # 初始化畫布，指定大小為 550x550
+    canvas, ctx = create_canvas(width=550, height=550)
+
+    # 繪製迷宮，設定原點為 (31, 39)
+    draw_maze(ctx, origin_x=31, origin_y=39)
+
+    # 自動尋找出口的路徑
+    path = find_path()
+
+    # 繪製路徑
+    draw_path(ctx, path, origin_x=31, origin_y=39)
+
+# 執行主程式
+main()
+</pre>
+<p></p><h1>Final Report</h1>
 <p>期末口頭與書面專題報告 (20%)</p>
 <p>期末口頭專題報告影片:</p>
 <p style="padding-left: 30px;">......</p>
