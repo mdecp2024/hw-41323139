@@ -209,6 +209,54 @@ for i in range(0, len(animals)):
 </ul>
 </li>
 </ul>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 定義配件清單
+accessories = ["belt", "hat", "gloves", "sunglasses", "ring"]  # 配件清單
+print(accessories)  # 列印整個清單內容
+
+# 迴圈遍歷清單，顯示每個元素及其位置
+for i in range(len(accessories)):  # 從索引 0 遍歷到清單長度 - 1
+    print("The element " + accessories[i] + " is in position " + str(i))
+    # 列印每個元素的名稱及其位置
+
+# 篩選出長度為 6 的元素
+for i in range(len(accessories)):
+    if len(accessories[i]) == 6:  # 如果元素長度為 6
+        print("The element " + accessories[i] + " is in position " + str(i) + " and it has 6 characters")
+        # 列印符合條件的元素及其相關資訊
+
+# 篩選出長度小於 6 的元素
+for i in range(len(accessories)):
+    if len(accessories[i]) &lt; 6:  # 如果元素長度小於 6
+        print("The element " + accessories[i] + " is in position " + str(i) + " and it has less than 6 characters")
+        # 列印符合條件的元素及其相關資訊
+
+# 篩選出長度大於 6 的元素
+n_of_characters = 6  # 設定字元長度的門檻值
+for i in range(len(accessories)):
+    if len(accessories[i]) &gt; n_of_characters:  # 如果元素長度大於門檻值
+        print("The element " + accessories[i] + " is in position " + str(i) + " and it has more than " + str(n_of_characters) + " characters")
+        # 列印符合條件的元素及其相關資訊
+
+# 篩選出長度不等於 6 的元素
+for i in range(len(accessories)):
+    if len(accessories[i]) != n_of_characters:  # 如果元素長度不等於門檻值
+        print("The element " + accessories[i] + " is in position " + str(i) + " and it has a number of characters different from " + str(n_of_characters))
+        # 列印符合條件的元素及其相關資訊
+
+# 篩選位置小於等於 2 的元素
+position = 2  # 設定位置門檻值
+for i in range(len(accessories)):
+    if i &lt;= position:  # 如果元素位置小於或等於門檻值
+        print("The element " + accessories[i] + " is in position " + str(i) + ", which is less than or equal to " + str(position))
+        # 列印符合條件的元素及其相關資訊
+
+# 篩選位置大於等於 2 的元素
+for i in range(len(accessories)):
+    if i &gt;= position:  # 如果元素位置大於或等於門檻值
+        print("The element " + accessories[i] + " is in position " + str(i) + ", which is at least " + str(position))
+        # 列印符合條件的元素及其相關資訊
+</pre>
+<p><br/><br/></p>
 <p>
 <script type="text/python">
 from browser import html
@@ -249,8 +297,7 @@ ctx.beginPath()
 ctx.arc(300, 300, 141.4, 0, 2 * 3.14)  # 圓心在(300, 300)，半徑為141.4
 ctx.stroke()
 </script>
-</p>
-<h3>w13_hw</h3>
+</p><h3>w13_hw</h3>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/puQQDrrtpMw?si=ly5i6YJwxT4tU_Z-" title="YouTube video player" width="560"></iframe></p>
 <p></p>
 <p></p>
@@ -949,12 +996,11 @@ main()
 <p>期末口頭專題報告影片:</p>
 <p style="padding-left: 30px;">......</p>
 <p>期末書面專題報告檔案 (pdf):</p>
-<p style="padding-left: 30px;">......</p>
+<p></p>
 <p>電腦輔助設計與實習課程總結心得:</p>
 <p style="padding-left: 30px;">......</p>
 <p>期末報告自評成績:</p>
-<p style="padding-left: 30px;">完成上述流程後, 請將 Final Report 自評分數輸入 cp2024 自評表單中.</p>
-<h1>Brython</h1>
+<p style="padding-left: 30px;">完成上述流程後, 請將 Final Report 自評分數輸入 cp2024 自評表單中.</p><h1>Brython</h1>
 <p>從 1 累加到 100:</p>
 <p><button id="add1to100">1 add to 100</button></p>
 <!-- 導入 brython 程式庫 -->
